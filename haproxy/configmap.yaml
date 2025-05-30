@@ -13,9 +13,10 @@ data:
 
     defaults
         mode tcp
-        timeout connect 5000ms
-        timeout client 50000ms
-        timeout server 50000ms
+        timeout connect 10000ms
+        timeout client 300000ms
+        timeout server 300000ms
+        timeout check 5000ms
         log global
 
     # ヘルスチェック用のHTTPリスナー
@@ -33,7 +34,9 @@ data:
     backend rdp_backend
         mode tcp
         balance roundrobin
-        server rdp_server1 192.168.11.176:3389
+        option tcp-check
+        tcp-check connect
+        server rdp_server1 192.168.11.176:3389 check inter 30s fastinter 5s downinter 5s rise 1 fall 3
 
     # 統計情報表示用（オプション）
     frontend stats
