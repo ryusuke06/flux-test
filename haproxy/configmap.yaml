@@ -34,9 +34,7 @@ data:
         mode tcp
         balance roundrobin
         # 実際のRDPサーバーのIPアドレスとポートを設定してください
-        # 例: server rdp_server1 192.168.1.100:3389
-        # 現在はヘルスチェックを無効化しています（check を削除）
-        server rdp_server1 192.168.11.2:3389
+        server rdp_server1 192.168.11.176:3389
 
     # 統計情報表示用（オプション）
     frontend stats
