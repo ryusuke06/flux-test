@@ -33,7 +33,6 @@ data:
     backend rdp_backend
         mode tcp
         balance roundrobin
-        # 実際のRDPサーバーのIPアドレスとポートを設定してください
         server rdp_server1 192.168.11.176:3389
 
     # 統計情報表示用（オプション）
