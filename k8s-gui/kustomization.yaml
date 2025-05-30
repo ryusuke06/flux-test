@@ -5,6 +5,3 @@ resources:
   - cluster-role-binding.yaml
 
 namespace: kubernetes-dashboard
-
-patchesStrategicMerge:
-  - dashboard-ingress.yaml

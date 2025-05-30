@@ -7,7 +7,6 @@
 - `kustomization.yaml` - Kustomizeの設定ファイル
 - `service-account.yaml` - 管理者用ServiceAccountとSecret
 - `cluster-role-binding.yaml` - クラスター管理者権限のバインディング
-- `dashboard-ingress.yaml` - 外部アクセス用のIngress設定
 - `get-token.sh` - 認証トークン取得用スクリプト
 
 ## デプロイ手順
@@ -29,26 +28,18 @@
 
 ## アクセス方法
 
-### 方法1: kubectl proxy経由
+### 方法1: Port Forward（推奨）
+```bash
+kubectl port-forward -n kubernetes-dashboard service/kubernetes-dashboard 8080:443
+```
+その後、https://localhost:8080 にアクセス
+
+### 方法2: kubectl proxy経由
 ```bash
 kubectl proxy
 ```
 その後、以下のURLにアクセス：
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
-
-### 方法2: Ingress経由（推奨）
-`/etc/hosts` に以下を追加：
-```
-127.0.0.1 dashboard.local
-```
-
-その後、https://dashboard.local にアクセス
-
-### 方法3: Port Forward
-```bash
-kubectl port-forward -n kubernetes-dashboard service/kubernetes-dashboard 8080:443
-```
-その後、https://localhost:8080 にアクセス
 
 ## ログイン
 
