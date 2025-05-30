@@ -33,9 +33,10 @@ data:
     backend rdp_backend
         mode tcp
         balance roundrobin
-        # ここに実際のRDPサーバーのIPアドレスとポートを設定してください
-        # 複数のサーバーがある場合は追加で設定可能
-        server rdp_server1 192.168.11.2:3389 check
+        # 実際のRDPサーバーのIPアドレスとポートを設定してください
+        # 例: server rdp_server1 192.168.1.100:3389
+        # 現在はヘルスチェックを無効化しています（check を削除）
+        server rdp_server1 192.168.11.2:3389
 
     # 統計情報表示用（オプション）
     frontend stats
